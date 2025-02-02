@@ -58,3 +58,29 @@ public class Journal
         }
     }
 }
+
+class Program
+{
+    static void Main()
+    {
+        Journal journal = new Journal();
+        journal.LoadFromFile("journal.txt");
+
+        // Display a random prompt
+        Console.WriteLine("Today's prompt: ");
+        Console.WriteLine(journal.GetRandomPrompt());
+        
+        Console.WriteLine("\nPlease enter your response: ");
+        string response = Console.ReadLine();
+
+        // Add the entry to the journal
+        journal.AddEntry(response);
+
+        // Display all journal entries
+        Console.WriteLine("\nAll journal entries:");
+        journal.DisplayEntries();
+
+        // Save the entries to a file
+        journal.SaveToFile("journal.txt");
+    }
+}
