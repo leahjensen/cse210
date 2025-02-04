@@ -7,11 +7,11 @@ public class Journal
     private List<string> entries = new List<string>();
     private List<string> prompts = new List<string>
     {
-        "What was the best part of your day?",
-        "What did you learn today?",
-        "Describe a moment you felt grateful for.",
-        "What challenges did you overcome today?",
-        "If you could relive one moment from today, what would it be?"
+        "What made you smile today?",
+        "What is something new you discovered?",
+        "Write about a moment that made you feel appreciated.",
+        "Describe a challenge you tackled today.",
+        "If you could revisit one part of today, what would it be?"
     };
 
     public string GetRandomPrompt()
@@ -27,11 +27,11 @@ public class Journal
         entries.Add(entry);
     }
 
-    public void DisplayEntries()
+    public void ShowEntries()
     {
         if (entries.Count == 0)
         {
-            Console.WriteLine("No entries found.");
+            Console.WriteLine("No journal entries yet.");
             return;
         }
 
@@ -54,7 +54,7 @@ public class Journal
         }
         else
         {
-            Console.WriteLine("File not found.");
+            Console.WriteLine("No saved journal found.");
         }
     }
 }
@@ -66,21 +66,17 @@ class Program
         Journal journal = new Journal();
         journal.LoadFromFile("journal.txt");
 
-        // Display a random prompt
-        Console.WriteLine("Today's prompt: ");
+        Console.WriteLine("Here’s a journal prompt for you:");
         Console.WriteLine(journal.GetRandomPrompt());
         
-        Console.WriteLine("\nPlease enter your response: ");
+        Console.WriteLine("\nWrite your response:");
         string response = Console.ReadLine();
 
-        // Add the entry to the journal
         journal.AddEntry(response);
 
-        // Display all journal entries
-        Console.WriteLine("\nAll journal entries:");
-        journal.DisplayEntries();
+        Console.WriteLine("\nYour journal entries:");
+        journal.ShowEntries();
 
-        // Save the entries to a file
         journal.SaveToFile("journal.txt");
     }
 }
